@@ -1,9 +1,9 @@
-?using UnityEngine;
+ï»¿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using LitJson;
 
-// Songle‚©‚çŠy‹Èƒf[ƒ^‚ğæ“¾‚·‚é
+// Songleã‹ã‚‰æ¥½æ›²ãƒ‡ãƒ¼ã‚¿ã‚’å–å¾—ã™ã‚‹
 public class SongleAPI : MonoBehaviour {
 	public bool debug;
 	public string videourl = ""; //www.nicovideo.jp/watch/smxxxxx
@@ -31,7 +31,7 @@ public class SongleAPI : MonoBehaviour {
 
 	IEnumerator Download()
 	{
-		// ‰Ìƒf[ƒ^‚Ì‰ğÍ
+		// æ­Œãƒ‡ãƒ¼ã‚¿ã®è§£æ
 		WWW song = new WWW(songleapi + "song.json?url=" + videourl);
 		yield return song;
 		songdata = JsonMapper.ToObject<SongDataJson>(song.text);
@@ -43,22 +43,22 @@ public class SongleAPI : MonoBehaviour {
 			Debug.Log("updateAt " + songdata.updatedAt);
 		}
 
-		// ”ƒf[ƒ^‚Ì‰ğÍ
+		// æ‹ãƒ‡ãƒ¼ã‚¿ã®è§£æ
 		WWW beat = new WWW(songleapi + "song/beat.json?url=" + videourl);
 		yield return beat;
 		beatdata = JsonMapper.ToObject<BeatJson>(beat.text);
 
-		// ˜a‰¹ƒf[ƒ^‚Ì‰ğÍ
+		// å’ŒéŸ³ãƒ‡ãƒ¼ã‚¿ã®è§£æ
 		WWW chord = new WWW(songleapi + "song/chord.json?url=" + videourl);
 		yield return chord;
 		chorddata = JsonMapper.ToObject<ChordJson>(chord.text);
 
-		// ƒƒƒfƒB
+		// ãƒ¡ãƒ­ãƒ‡ã‚£
 		WWW melody = new WWW(songleapi + "song/melody.json?url=" + videourl);
 		yield return melody;
 		melodydata = JsonMapper.ToObject<MelodyJson>(melody.text);
 
-		// ƒTƒr
+		// ã‚µãƒ“
 		WWW chorus = new WWW(songleapi + "song/chorus.json?url=" + videourl);
 		yield return chorus;
 		chorusdata = JsonMapper.ToObject<ChorusJson>(chorus.text);
@@ -75,21 +75,21 @@ public class SongDataJson
 {
 	public string url; // songle URL
 	public int id; // songle ID
-	public string title; // ƒ^ƒCƒgƒ‹
-	public string permalink; // ”zMŒ³URL
-	public double duration; // ’·‚³ millsecond
-	public double rmsAmplitude; // U•
+	public string title; // ã‚¿ã‚¤ãƒˆãƒ«
+	public string permalink; // é…ä¿¡å…ƒURL
+	public double duration; // é•·ã• millsecond
+	public double rmsAmplitude; // æŒ¯å¹…
 	public string code;
-	public Artist artist; // ƒA[ƒeƒBƒXƒgî•ñ
+	public Artist artist; // ã‚¢ãƒ¼ãƒ†ã‚£ã‚¹ãƒˆæƒ…å ±
 	public string createAt;
 	public string updatedAt;
 	public string recognizedAt;
 
-	// ƒA[ƒeƒBƒXƒgî•ñ
+	// ã‚¢ãƒ¼ãƒ†ã‚£ã‚¹ãƒˆæƒ…å ±
 	public class Artist
 	{
 		public int id; // sonoge ID
-		public string name; // ƒA[ƒeƒBƒXƒg–¼
+		public string name; // ã‚¢ãƒ¼ãƒ†ã‚£ã‚¹ãƒˆå
 	}
 }
 
